@@ -1,0 +1,23 @@
+{
+  "format": "panel.rig",
+  "version": 1,
+  "joints": [
+    {
+      "id": "body",
+      "parent": null
+    }
+  ],
+  "layers": [
+    {
+      "id": "portrait",
+      "image": "../sprites/leila-wave.png",
+      "joint": "body",
+      "pivot": [
+        141.0,
+        724
+      ],
+      "sx": 0.6353591160220995,
+      "sy": 0.6353591160220995
+    }
+  ]
+}

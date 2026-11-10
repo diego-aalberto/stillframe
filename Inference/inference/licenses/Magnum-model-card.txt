@@ -1,0 +1,173 @@
+---
+license: apache-2.0
+language:
+- en
+tags:
+- chat
+pipeline_tag: text-generation
+library_name: transformers
+datasets:
+- anthracite-org/c2_logs_32k_llama3_qwen2_v1.2_no_system
+- anthracite-org/kalo-opus-instruct-22k-no-refusal-no-system
+- anthracite-org/kalo-opus-instruct-3k-filtered-no-system
+- anthracite-org/nopm_claude_writing_fixed
+- anthracite-org/kalo_opus_misc_240827_no_system
+- anthracite-org/kalo_misc_part2_no_system
+---
+
+
+![image/png](https://cdn-uploads.huggingface.co/production/uploads/658a46cbfb9c2bdfae75b3a6/-UC6YN1Gt3e1FDh8EqyaB.png)
+## This repo contains GGUF quants of the model. If you need the original weights, please find them [here](https://huggingface.co/anthracite-org/magnum-v4-12b).
+
+This is a series of models designed to replicate the prose quality of the Claude 3 models, specifically Sonnet and Opus.
+
+
+
+This model is fine-tuned on top of [mistralai/Mistral-Nemo-Instruct-2407](https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407).
+
+## Prompting
+A typical input would look like this:
+
+```py
+<s>[INST] SYSTEM MESSAGE
+USER MESSAGE[/INST] ASSISTANT MESSAGE</s>[INST] USER MESSAGE[/INST]
+```
+
+## SillyTavern templates
+
+Below are Instruct and Context templates for use within SillyTavern.
+
+<details><summary>context template</summary>
+  
+```yaml
+default SillyTavern template works fine
+```
+
+</details><br>
+<details><summary>instruct template</summary>
+  
+```yaml
+default SillyTavern template works fine
+```
+
+</details><br>
+
+## Axolotl config
+
+<details><summary>See axolotl config</summary>
+
+```yaml
+base_model: mistralai/Mistral-Nemo-Instruct-2407
+model_type: AutoModelForCausalLM
+tokenizer_type: AutoTokenizer
+
+hub_model_id: anthracite-org/magnum-v4-12b-r2
+hub_strategy: "all_checkpoints"
+push_dataset_to_hub:
+hf_use_auth_token: true
+
+plugins:
+  - axolotl.integrations.liger.LigerPlugin
+liger_rope: true
+liger_rms_norm: true
+liger_swiglu: true
+liger_fused_linear_cross_entropy: true
+
+load_in_8bit: false
+load_in_4bit: false
+strict: false
+
+datasets:
+  - path: anthracite-org/c2_logs_32k_llama3_qwen2_v1.2_no_system
+    type: custommistralv3tekken
+  - path: anthracite-org/kalo-opus-instruct-22k-no-refusal-no-system
+    type: custommistralv3tekken
+  - path: anthracite-org/kalo-opus-instruct-3k-filtered-no-system
+    type: custommistralv3tekken
+  - path: anthracite-org/nopm_claude_writing_fixed
+    type: custommistralv3tekken
+  - path: anthracite-org/kalo_opus_misc_240827_no_system
+    type: custommistralv3tekken
+  - path: anthracite-org/kalo_misc_part2_no_system
+    type: custommistralv3tekken
+#chat_template: chatml
+shuffle_merged_datasets: true
+#default_system_message: "You are an assistant that responds to the user."
+dataset_prepared_path: /workspace/data/magnum-12b-data
+val_set_size: 0.0
+output_dir: /workspace/data/12b-fft-out
+
+sequence_len: 32768
+sample_packing: true
+pad_to_sequence_len: true
+
+adapter:
+lora_model_dir:
+lora_r:
+lora_alpha:
+lora_dropout:
+lora_target_linear:
+lora_fan_in_fan_out:
+
+wandb_project: 12b-magnum-fft
+wandb_entity:
+wandb_watch:
+wandb_name: v4-r2-attempt-01
+wandb_log_model:
+
+gradient_accumulation_steps: 2
+micro_batch_size: 1
+num_epochs: 2
+optimizer: adamw_bnb_8bit
+lr_scheduler: cosine
+learning_rate: 0.00001
+
+train_on_inputs: false
+group_by_length: false
+bf16: auto
+fp16:
+tf32: false
+
+gradient_checkpointing: true
+early_stopping_patience:
+resume_from_checkpoint:
+local_rank:
+logging_steps: 1
+xformers_attention:
+flash_attention: true
+
+warmup_steps: 40
+evals_per_epoch:
+eval_table_size:
+eval_max_new_tokens:
+saves_per_epoch: 2
+debug:
+deepspeed: deepspeed_configs/zero2.json
+weight_decay: 0.1
+fsdp:
+fsdp_config:
+special_tokens:
+  pad_token: <pad>
+```
+</details><br>
+
+## Credits
+We'd like to thank Recursal / Featherless for sponsoring the compute for this train, Featherless has been hosting our Magnum models since the first 72 B and has given thousands of people access to our models and helped us grow.
+
+We would also like to thank all members of Anthracite who made this finetune possible. 
+
+## Datasets
+- [anthracite-org/c2_logs_32k_llama3_qwen2_v1.2_no_system](https://huggingface.co/datasets/anthracite-org/c2_logs_32k_llama3_qwen2_v1.2_no_system)
+- [anthracite-org/kalo-opus-instruct-22k-no-refusal-no-system](https://huggingface.co/datasets/anthracite-org/kalo-opus-instruct-22k-no-refusal-no-system)
+- [anthracite-org/kalo-opus-instruct-3k-filtered-no-system](https://huggingface.co/datasets/anthracite-org/kalo-opus-instruct-3k-filtered-no-system)
+- [anthracite-org/nopm_claude_writing_fixed](https://huggingface.co/datasets/anthracite-org/nopm_claude_writing_fixed)
+- [anthracite-org/kalo_opus_misc_240827_no_system](https://huggingface.co/datasets/anthracite-org/kalo_opus_misc_240827_no_system)
+- [anthracite-org/kalo_misc_part2_no_system](https://huggingface.co/datasets/anthracite-org/kalo_misc_part2_no_system)
+
+## Training
+The training was done for 2 epochs. We used  8x[H100s](https://www.nvidia.com/en-us/data-center/h100/) GPUs graciously provided by [Recursal AI](https://recursal.ai/) / [Featherless AI](https://featherless.ai/) for the full-parameter fine-tuning of the model.
+
+[<img src="https://raw.githubusercontent.com/OpenAccess-AI-Collective/axolotl/main/image/axolotl-badge-web.png" alt="Built with Axolotl" width="200" height="32"/>](https://github.com/OpenAccess-AI-Collective/axolotl)
+
+## Safety
+...

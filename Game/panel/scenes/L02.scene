@@ -1,0 +1,218 @@
+{
+  "format": "panel.scene",
+  "version": 1,
+  "background": "../../assets/backgrounds/street.png",
+  "text": "Leila asks whether you would take her picture beside a crooked street mural. She immediately starts directing the composition, then laughs at herself. \"I am being unbearable. You may tell me.\"",
+  "actors": [
+    {
+      "id": "leila",
+      "name": "Leila",
+      "x": 640.0,
+      "y": 630,
+      "sx": 1.16,
+      "sy": 1.16,
+      "startup_prompt": "Thoughtful freelance photographer with dry humor. Comfortable with silence; sometimes uses it to avoid answers. Wants to participate rather than always observe.",
+      "pose": "neutral",
+      "bubble": {
+        "bubble_fill": "#cdeddbff",
+        "text": "#392e42"
+      },
+      "poses": {
+        "neutral": {
+          "rig": "../rigs/leila-neutral.rig",
+          "animation": "breathe",
+          "animations": {
+            "breathe": "../animations/breathe.anim",
+            "nod": "../animations/nod.anim",
+            "shake_head": "../animations/shake_head.anim",
+            "tilt": "../animations/tilt.anim",
+            "emphasize": "../animations/emphasize.anim",
+            "chuckle": "../animations/chuckle.anim",
+            "bashful": "../animations/bashful.anim",
+            "reassure": "../animations/reassure.anim",
+            "sigh": "../animations/sigh.anim",
+            "glance": "../animations/glance.anim"
+          }
+        },
+        "wave": {
+          "rig": "../rigs/leila-wave.rig",
+          "animation": "breathe",
+          "animations": {
+            "breathe": "../animations/breathe.anim",
+            "nod": "../animations/nod.anim",
+            "shake_head": "../animations/shake_head.anim",
+            "tilt": "../animations/tilt.anim",
+            "emphasize": "../animations/emphasize.anim",
+            "chuckle": "../animations/chuckle.anim",
+            "bashful": "../animations/bashful.anim",
+            "reassure": "../animations/reassure.anim",
+            "sigh": "../animations/sigh.anim",
+            "glance": "../animations/glance.anim"
+          }
+        },
+        "explain": {
+          "rig": "../rigs/leila-explain.rig",
+          "animation": "breathe",
+          "animations": {
+            "breathe": "../animations/breathe.anim",
+            "nod": "../animations/nod.anim",
+            "shake_head": "../animations/shake_head.anim",
+            "tilt": "../animations/tilt.anim",
+            "emphasize": "../animations/emphasize.anim",
+            "chuckle": "../animations/chuckle.anim",
+            "bashful": "../animations/bashful.anim",
+            "reassure": "../animations/reassure.anim",
+            "sigh": "../animations/sigh.anim",
+            "glance": "../animations/glance.anim"
+          }
+        },
+        "folded": {
+          "rig": "../rigs/leila-folded.rig",
+          "animation": "breathe",
+          "animations": {
+            "breathe": "../animations/breathe.anim",
+            "nod": "../animations/nod.anim",
+            "shake_head": "../animations/shake_head.anim",
+            "tilt": "../animations/tilt.anim",
+            "emphasize": "../animations/emphasize.anim",
+            "chuckle": "../animations/chuckle.anim",
+            "bashful": "../animations/bashful.anim",
+            "reassure": "../animations/reassure.anim",
+            "sigh": "../animations/sigh.anim",
+            "glance": "../animations/glance.anim"
+          }
+        },
+        "shy": {
+          "rig": "../rigs/leila-shy.rig",
+          "animation": "breathe",
+          "animations": {
+            "breathe": "../animations/breathe.anim",
+            "nod": "../animations/nod.anim",
+            "shake_head": "../animations/shake_head.anim",
+            "tilt": "../animations/tilt.anim",
+            "emphasize": "../animations/emphasize.anim",
+            "chuckle": "../animations/chuckle.anim",
+            "bashful": "../animations/bashful.anim",
+            "reassure": "../animations/reassure.anim",
+            "sigh": "../animations/sigh.anim",
+            "glance": "../animations/glance.anim"
+          }
+        },
+        "laugh": {
+          "rig": "../rigs/leila-laugh.rig",
+          "animation": "breathe",
+          "animations": {
+            "breathe": "../animations/breathe.anim",
+            "nod": "../animations/nod.anim",
+            "shake_head": "../animations/shake_head.anim",
+            "tilt": "../animations/tilt.anim",
+            "emphasize": "../animations/emphasize.anim",
+            "chuckle": "../animations/chuckle.anim",
+            "bashful": "../animations/bashful.anim",
+            "reassure": "../animations/reassure.anim",
+            "sigh": "../animations/sigh.anim",
+            "glance": "../animations/glance.anim"
+          }
+        },
+        "worried": {
+          "rig": "../rigs/leila-worried.rig",
+          "animation": "breathe",
+          "animations": {
+            "breathe": "../animations/breathe.anim",
+            "nod": "../animations/nod.anim",
+            "shake_head": "../animations/shake_head.anim",
+            "tilt": "../animations/tilt.anim",
+            "emphasize": "../animations/emphasize.anim",
+            "chuckle": "../animations/chuckle.anim",
+            "bashful": "../animations/bashful.anim",
+            "reassure": "../animations/reassure.anim",
+            "sigh": "../animations/sigh.anim",
+            "glance": "../animations/glance.anim"
+          }
+        },
+        "firm": {
+          "rig": "../rigs/leila-firm.rig",
+          "animation": "breathe",
+          "animations": {
+            "breathe": "../animations/breathe.anim",
+            "nod": "../animations/nod.anim",
+            "shake_head": "../animations/shake_head.anim",
+            "tilt": "../animations/tilt.anim",
+            "emphasize": "../animations/emphasize.anim",
+            "chuckle": "../animations/chuckle.anim",
+            "bashful": "../animations/bashful.anim",
+            "reassure": "../animations/reassure.anim",
+            "sigh": "../animations/sigh.anim",
+            "glance": "../animations/glance.anim"
+          }
+        },
+        "seated": {
+          "rig": "../rigs/leila-seated.rig",
+          "animation": "breathe",
+          "animations": {
+            "breathe": "../animations/breathe.anim",
+            "nod": "../animations/nod.anim",
+            "shake_head": "../animations/shake_head.anim",
+            "tilt": "../animations/tilt.anim",
+            "emphasize": "../animations/emphasize.anim",
+            "chuckle": "../animations/chuckle.anim",
+            "bashful": "../animations/bashful.anim",
+            "reassure": "../animations/reassure.anim",
+            "sigh": "../animations/sigh.anim",
+            "glance": "../animations/glance.anim"
+          }
+        },
+        "seated_relaxed": {
+          "rig": "../rigs/leila-seated_relaxed.rig",
+          "animation": "breathe",
+          "animations": {
+            "breathe": "../animations/breathe.anim",
+            "nod": "../animations/nod.anim",
+            "shake_head": "../animations/shake_head.anim",
+            "tilt": "../animations/tilt.anim",
+            "emphasize": "../animations/emphasize.anim",
+            "chuckle": "../animations/chuckle.anim",
+            "bashful": "../animations/bashful.anim",
+            "reassure": "../animations/reassure.anim",
+            "sigh": "../animations/sigh.anim",
+            "glance": "../animations/glance.anim"
+          }
+        },
+        "affectionate": {
+          "rig": "../rigs/leila-affectionate.rig",
+          "animation": "breathe",
+          "animations": {
+            "breathe": "../animations/breathe.anim",
+            "nod": "../animations/nod.anim",
+            "shake_head": "../animations/shake_head.anim",
+            "tilt": "../animations/tilt.anim",
+            "emphasize": "../animations/emphasize.anim",
+            "chuckle": "../animations/chuckle.anim",
+            "bashful": "../animations/bashful.anim",
+            "reassure": "../animations/reassure.anim",
+            "sigh": "../animations/sigh.anim",
+            "glance": "../animations/glance.anim"
+          }
+        },
+        "cuddle": {
+          "rig": "../rigs/leila-cuddle.rig",
+          "animation": "breathe",
+          "animations": {
+            "breathe": "../animations/breathe.anim",
+            "nod": "../animations/nod.anim",
+            "shake_head": "../animations/shake_head.anim",
+            "tilt": "../animations/tilt.anim",
+            "emphasize": "../animations/emphasize.anim",
+            "chuckle": "../animations/chuckle.anim",
+            "bashful": "../animations/bashful.anim",
+            "reassure": "../animations/reassure.anim",
+            "sigh": "../animations/sigh.anim",
+            "glance": "../animations/glance.anim"
+          }
+        }
+      }
+    }
+  ],
+  "buttons": [],
+  "music": null
+}

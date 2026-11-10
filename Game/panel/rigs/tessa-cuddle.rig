@@ -1,0 +1,23 @@
+{
+  "format": "panel.rig",
+  "version": 1,
+  "joints": [
+    {
+      "id": "body",
+      "parent": null
+    }
+  ],
+  "layers": [
+    {
+      "id": "portrait",
+      "image": "../sprites/tessa-cuddle.png",
+      "joint": "body",
+      "pivot": [
+        249.5,
+        629
+      ],
+      "sx": 0.5564387917329093,
+      "sy": 0.5564387917329093
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"format":"panel.animation","version":1,"duration":2.7,"loop":true,"tracks":[{"target":"joint:root","channel":"rotation","keys":[{"time":0,"value":0,"ease":"smooth"},{"time":0.65,"value":1.5,"ease":"smooth"},{"time":1.9,"value":-1.5,"ease":"smooth"},{"time":2.7,"value":0}]}]}

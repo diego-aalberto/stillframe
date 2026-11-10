@@ -1,0 +1,23 @@
+{
+  "format": "panel.rig",
+  "version": 1,
+  "joints": [
+    {
+      "id": "body",
+      "parent": null
+    }
+  ],
+  "layers": [
+    {
+      "id": "portrait",
+      "image": "../sprites/leila-cuddle.png",
+      "joint": "body",
+      "pivot": [
+        230.0,
+        695
+      ],
+      "sx": 0.5035971223021583,
+      "sy": 0.5035971223021583
+    }
+  ]
+}

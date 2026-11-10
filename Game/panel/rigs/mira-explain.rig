@@ -1,0 +1,23 @@
+{
+  "format": "panel.rig",
+  "version": 1,
+  "joints": [
+    {
+      "id": "body",
+      "parent": null
+    }
+  ],
+  "layers": [
+    {
+      "id": "portrait",
+      "image": "../sprites/mira-explain.png",
+      "joint": "body",
+      "pivot": [
+        160.0,
+        721
+      ],
+      "sx": 0.6380027739251041,
+      "sy": 0.6380027739251041
+    }
+  ]
+}

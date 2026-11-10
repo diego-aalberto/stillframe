@@ -1,0 +1,23 @@
+{
+  "format": "panel.rig",
+  "version": 1,
+  "joints": [
+    {
+      "id": "body",
+      "parent": null
+    }
+  ],
+  "layers": [
+    {
+      "id": "portrait",
+      "image": "../sprites/leila-seated_relaxed.png",
+      "joint": "body",
+      "pivot": [
+        169.0,
+        706
+      ],
+      "sx": 0.49575070821529743,
+      "sy": 0.49575070821529743
+    }
+  ]
+}

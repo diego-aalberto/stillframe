@@ -1,0 +1,218 @@
+{
+  "format": "panel.scene",
+  "version": 1,
+  "background": "../../assets/backgrounds/workshop.png",
+  "text": "A shelf waits unfinished while Tessa closes the workshop. \"It can wait until tomorrow.\" She looks at you. \"I would rather know what we are doing tonight.\"",
+  "actors": [
+    {
+      "id": "tessa",
+      "name": "Tessa",
+      "x": 640.0,
+      "y": 630,
+      "sx": 1.16,
+      "sy": 1.16,
+      "startup_prompt": "Warm carpenter and theater stagehand. Patient, grounded, quietly playful. Calls inconveniences fine until resentful; must name her needs. Bakes handsome but questionable bread.",
+      "pose": "neutral",
+      "bubble": {
+        "bubble_fill": "#cdd7eaff",
+        "text": "#392e42"
+      },
+      "poses": {
+        "neutral": {
+          "rig": "../rigs/tessa-neutral.rig",
+          "animation": "breathe",
+          "animations": {
+            "breathe": "../animations/breathe.anim",
+            "nod": "../animations/nod.anim",
+            "shake_head": "../animations/shake_head.anim",
+            "tilt": "../animations/tilt.anim",
+            "emphasize": "../animations/emphasize.anim",
+            "chuckle": "../animations/chuckle.anim",
+            "bashful": "../animations/bashful.anim",
+            "reassure": "../animations/reassure.anim",
+            "sigh": "../animations/sigh.anim",
+            "glance": "../animations/glance.anim"
+          }
+        },
+        "wave": {
+          "rig": "../rigs/tessa-wave.rig",
+          "animation": "breathe",
+          "animations": {
+            "breathe": "../animations/breathe.anim",
+            "nod": "../animations/nod.anim",
+            "shake_head": "../animations/shake_head.anim",
+            "tilt": "../animations/tilt.anim",
+            "emphasize": "../animations/emphasize.anim",
+            "chuckle": "../animations/chuckle.anim",
+            "bashful": "../animations/bashful.anim",
+            "reassure": "../animations/reassure.anim",
+            "sigh": "../animations/sigh.anim",
+            "glance": "../animations/glance.anim"
+          }
+        },
+        "explain": {
+          "rig": "../rigs/tessa-explain.rig",
+          "animation": "breathe",
+          "animations": {
+            "breathe": "../animations/breathe.anim",
+            "nod": "../animations/nod.anim",
+            "shake_head": "../animations/shake_head.anim",
+            "tilt": "../animations/tilt.anim",
+            "emphasize": "../animations/emphasize.anim",
+            "chuckle": "../animations/chuckle.anim",
+            "bashful": "../animations/bashful.anim",
+            "reassure": "../animations/reassure.anim",
+            "sigh": "../animations/sigh.anim",
+            "glance": "../animations/glance.anim"
+          }
+        },
+        "folded": {
+          "rig": "../rigs/tessa-folded.rig",
+          "animation": "breathe",
+          "animations": {
+            "breathe": "../animations/breathe.anim",
+            "nod": "../animations/nod.anim",
+            "shake_head": "../animations/shake_head.anim",
+            "tilt": "../animations/tilt.anim",
+            "emphasize": "../animations/emphasize.anim",
+            "chuckle": "../animations/chuckle.anim",
+            "bashful": "../animations/bashful.anim",
+            "reassure": "../animations/reassure.anim",
+            "sigh": "../animations/sigh.anim",
+            "glance": "../animations/glance.anim"
+          }
+        },
+        "shy": {
+          "rig": "../rigs/tessa-shy.rig",
+          "animation": "breathe",
+          "animations": {
+            "breathe": "../animations/breathe.anim",
+            "nod": "../animations/nod.anim",
+            "shake_head": "../animations/shake_head.anim",
+            "tilt": "../animations/tilt.anim",
+            "emphasize": "../animations/emphasize.anim",
+            "chuckle": "../animations/chuckle.anim",
+            "bashful": "../animations/bashful.anim",
+            "reassure": "../animations/reassure.anim",
+            "sigh": "../animations/sigh.anim",
+            "glance": "../animations/glance.anim"
+          }
+        },
+        "laugh": {
+          "rig": "../rigs/tessa-laugh.rig",
+          "animation": "breathe",
+          "animations": {
+            "breathe": "../animations/breathe.anim",
+            "nod": "../animations/nod.anim",
+            "shake_head": "../animations/shake_head.anim",
+            "tilt": "../animations/tilt.anim",
+            "emphasize": "../animations/emphasize.anim",
+            "chuckle": "../animations/chuckle.anim",
+            "bashful": "../animations/bashful.anim",
+            "reassure": "../animations/reassure.anim",
+            "sigh": "../animations/sigh.anim",
+            "glance": "../animations/glance.anim"
+          }
+        },
+        "worried": {
+          "rig": "../rigs/tessa-worried.rig",
+          "animation": "breathe",
+          "animations": {
+            "breathe": "../animations/breathe.anim",
+            "nod": "../animations/nod.anim",
+            "shake_head": "../animations/shake_head.anim",
+            "tilt": "../animations/tilt.anim",
+            "emphasize": "../animations/emphasize.anim",
+            "chuckle": "../animations/chuckle.anim",
+            "bashful": "../animations/bashful.anim",
+            "reassure": "../animations/reassure.anim",
+            "sigh": "../animations/sigh.anim",
+            "glance": "../animations/glance.anim"
+          }
+        },
+        "firm": {
+          "rig": "../rigs/tessa-firm.rig",
+          "animation": "breathe",
+          "animations": {
+            "breathe": "../animations/breathe.anim",
+            "nod": "../animations/nod.anim",
+            "shake_head": "../animations/shake_head.anim",
+            "tilt": "../animations/tilt.anim",
+            "emphasize": "../animations/emphasize.anim",
+            "chuckle": "../animations/chuckle.anim",
+            "bashful": "../animations/bashful.anim",
+            "reassure": "../animations/reassure.anim",
+            "sigh": "../animations/sigh.anim",
+            "glance": "../animations/glance.anim"
+          }
+        },
+        "seated": {
+          "rig": "../rigs/tessa-seated.rig",
+          "animation": "breathe",
+          "animations": {
+            "breathe": "../animations/breathe.anim",
+            "nod": "../animations/nod.anim",
+            "shake_head": "../animations/shake_head.anim",
+            "tilt": "../animations/tilt.anim",
+            "emphasize": "../animations/emphasize.anim",
+            "chuckle": "../animations/chuckle.anim",
+            "bashful": "../animations/bashful.anim",
+            "reassure": "../animations/reassure.anim",
+            "sigh": "../animations/sigh.anim",
+            "glance": "../animations/glance.anim"
+          }
+        },
+        "seated_relaxed": {
+          "rig": "../rigs/tessa-seated_relaxed.rig",
+          "animation": "breathe",
+          "animations": {
+            "breathe": "../animations/breathe.anim",
+            "nod": "../animations/nod.anim",
+            "shake_head": "../animations/shake_head.anim",
+            "tilt": "../animations/tilt.anim",
+            "emphasize": "../animations/emphasize.anim",
+            "chuckle": "../animations/chuckle.anim",
+            "bashful": "../animations/bashful.anim",
+            "reassure": "../animations/reassure.anim",
+            "sigh": "../animations/sigh.anim",
+            "glance": "../animations/glance.anim"
+          }
+        },
+        "affectionate": {
+          "rig": "../rigs/tessa-affectionate.rig",
+          "animation": "breathe",
+          "animations": {
+            "breathe": "../animations/breathe.anim",
+            "nod": "../animations/nod.anim",
+            "shake_head": "../animations/shake_head.anim",
+            "tilt": "../animations/tilt.anim",
+            "emphasize": "../animations/emphasize.anim",
+            "chuckle": "../animations/chuckle.anim",
+            "bashful": "../animations/bashful.anim",
+            "reassure": "../animations/reassure.anim",
+            "sigh": "../animations/sigh.anim",
+            "glance": "../animations/glance.anim"
+          }
+        },
+        "cuddle": {
+          "rig": "../rigs/tessa-cuddle.rig",
+          "animation": "breathe",
+          "animations": {
+            "breathe": "../animations/breathe.anim",
+            "nod": "../animations/nod.anim",
+            "shake_head": "../animations/shake_head.anim",
+            "tilt": "../animations/tilt.anim",
+            "emphasize": "../animations/emphasize.anim",
+            "chuckle": "../animations/chuckle.anim",
+            "bashful": "../animations/bashful.anim",
+            "reassure": "../animations/reassure.anim",
+            "sigh": "../animations/sigh.anim",
+            "glance": "../animations/glance.anim"
+          }
+        }
+      }
+    }
+  ],
+  "buttons": [],
+  "music": null
+}

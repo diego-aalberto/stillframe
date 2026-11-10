@@ -1,0 +1,23 @@
+{
+  "format": "panel.rig",
+  "version": 1,
+  "joints": [
+    {
+      "id": "body",
+      "parent": null
+    }
+  ],
+  "layers": [
+    {
+      "id": "portrait",
+      "image": "../sprites/hana-cuddle.png",
+      "joint": "body",
+      "pivot": [
+        204.0,
+        682
+      ],
+      "sx": 0.5131964809384164,
+      "sy": 0.5131964809384164
+    }
+  ]
+}

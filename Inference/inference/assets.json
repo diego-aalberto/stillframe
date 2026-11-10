@@ -1,0 +1,26 @@
+{
+  "model": {
+    "repository": "anthracite-org/magnum-v4-12b-gguf",
+    "revision": "24c7243deb03204573cdaf0909804ca098f420db",
+    "filename": "magnum-v4-12b-Q4_K_M.gguf",
+    "url": "https://huggingface.co/anthracite-org/magnum-v4-12b-gguf/resolve/24c7243deb03204573cdaf0909804ca098f420db/magnum-v4-12b-Q4_K_M.gguf",
+    "sha256": "0202eca3c556279987d6202130e64ecc93ed365e37f7ca1b1673c7049fc28f31",
+    "size": 7477207936,
+    "license": "Apache-2.0",
+    "base_model": "mistralai/Mistral-Nemo-Instruct-2407"
+  },
+  "windows_engine": [
+    {
+      "filename": "llama-b10930-bin-win-cuda-13.3-x64.zip",
+      "url": "https://github.com/ggml-org/llama.cpp/releases/download/b10930/llama-b10930-bin-win-cuda-13.3-x64.zip",
+      "sha256": "1ef6e839c2f4186cc667f9f3f7478e6e154bb680cc61e03fe9cfc234ee9b3a04",
+      "size": 149709822
+    },
+    {
+      "filename": "cudart-llama-bin-win-cuda-13.3-x64.zip",
+      "url": "https://github.com/ggml-org/llama.cpp/releases/download/b10930/cudart-llama-bin-win-cuda-13.3-x64.zip",
+      "sha256": "1462a050eb4c684921ba51dcc4cc488a036674c3e73e9945ee705b854808d03e",
+      "size": 390970417
+    }
+  ]
+}

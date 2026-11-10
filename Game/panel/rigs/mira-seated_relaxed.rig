@@ -1,0 +1,23 @@
+{
+  "format": "panel.rig",
+  "version": 1,
+  "joints": [
+    {
+      "id": "body",
+      "parent": null
+    }
+  ],
+  "layers": [
+    {
+      "id": "portrait",
+      "image": "../sprites/mira-seated_relaxed.png",
+      "joint": "body",
+      "pivot": [
+        202.0,
+        663
+      ],
+      "sx": 0.5279034690799397,
+      "sy": 0.5279034690799397
+    }
+  ]
+}

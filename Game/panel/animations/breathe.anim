@@ -1,0 +1,39 @@
+{
+  "format": "panel.animation",
+  "version": 1,
+  "duration": 7.2,
+  "loop": true,
+  "tracks": [
+    {
+      "target": "joint:body",
+      "channel": "sy",
+      "keys": [
+        {
+          "time": 0.0,
+          "value": 1,
+          "ease": "smooth"
+        },
+        {
+          "time": 1.8,
+          "value": 1.006,
+          "ease": "smooth"
+        },
+        {
+          "time": 3.6,
+          "value": 1,
+          "ease": "smooth"
+        },
+        {
+          "time": 5.4,
+          "value": 1.002,
+          "ease": "smooth"
+        },
+        {
+          "time": 7.2,
+          "value": 1,
+          "ease": "smooth"
+        }
+      ]
+    }
+  ]
+}

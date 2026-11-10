@@ -1,0 +1,23 @@
+{
+  "format": "panel.rig",
+  "version": 1,
+  "joints": [
+    {
+      "id": "body",
+      "parent": null
+    }
+  ],
+  "layers": [
+    {
+      "id": "portrait",
+      "image": "../sprites/mira-wave.png",
+      "joint": "body",
+      "pivot": [
+        152.5,
+        720
+      ],
+      "sx": 0.6388888888888888,
+      "sy": 0.6388888888888888
+    }
+  ]
+}

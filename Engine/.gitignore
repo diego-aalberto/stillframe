@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+.pytest_cache/
+test-*-tmp/
+test-temp/
+examples/*-check.png
