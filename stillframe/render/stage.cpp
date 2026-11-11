@@ -152,17 +152,24 @@ void Stage::draw_sprite(Canvas& out, Sprite& s) {
     double ay = h_ + (cd->y_offset + off.dy) * h_;
     Rect dst{static_cast<float>(ax - cd->anchor_x * dw), static_cast<float>(ay - cd->anchor_y * dh), static_cast<float>(dw), static_cast<float>(dh)};
 
-    // shrink big sources once, with proper area averaging, instead of bilinear every frame
+    // resize the source to its resting size once (cached), instead of resampling every frame
     std::shared_ptr<const Image> use = img;
-    if (img->h > dh * 1.6) use = assets_.scaled(path, std::max(1, static_cast<int>(img->w * target_h / img->h + 0.5)), std::max(1, static_cast<int>(target_h + 0.5)));
+    if (std::fabs(img->h - target_h) >= 1.0) use = assets_.scaled(path, std::max(1, static_cast<int>(img->w * target_h / img->h + 0.5)), std::max(1, static_cast<int>(target_h + 0.5)));
+    // At rest the pre-scaled image already has its final size: draw it 1:1 on whole pixels, which skips resampling entirely.
+    // (Sprites with a scale motion fall back to the resampling path; that is only for the length of the motion.)
+    auto snap = [](Rect& r, const Image& im) {
+        if (std::fabs(r.w - im.w) < 1.0f && std::fabs(r.h - im.h) < 1.0f) { r.x = std::round(r.x); r.y = std::round(r.y); r.w = static_cast<float>(im.w); r.h = static_cast<float>(im.h); }
+    };
+    snap(dst, *use);
     if (s.pose_t < 1.0 && !s.prev_pose.empty()) {
         std::string pp = pose_path(s.prev_pose);
         if (!pp.empty()) {
             auto old = assets_.image(pp);
             std::shared_ptr<const Image> old_use = old;
-            if (old->h > dh * 1.6) old_use = assets_.scaled(pp, std::max(1, static_cast<int>(old->w * target_h / old->h + 0.5)), std::max(1, static_cast<int>(target_h + 0.5)));
+            if (std::fabs(old->h - target_h) >= 1.0) old_use = assets_.scaled(pp, std::max(1, static_cast<int>(old->w * target_h / old->h + 0.5)), std::max(1, static_cast<int>(target_h + 0.5)));
             double ow = old->w * (target_h / old->h) * off.scale;
             Rect odst{static_cast<float>(ax - cd->anchor_x * ow), dst.y, static_cast<float>(ow), dst.h};
+            snap(odst, *old_use);
             out.blit(*old_use, odst, static_cast<float>(1.0 - s.pose_t), static_cast<float>(s.bright));
         }
         out.blit(*use, dst, static_cast<float>(s.pose_t), static_cast<float>(s.bright));
@@ -184,6 +191,7 @@ void Stage::render_scene(Canvas& out, double) {
             out.blit(*use, {static_cast<float>(dx), static_cast<float>(dy), static_cast<float>(sw), static_cast<float>(sh)});
         }
     }
+
     std::vector<Sprite*> order;
     for (auto& s : sprites_) order.push_back(&s);
     std::sort(order.begin(), order.end(), [](Sprite* a, Sprite* b) { return a->order < b->order; });

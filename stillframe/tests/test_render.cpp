@@ -201,3 +201,27 @@ TEST(canvas_transitions_endpoints) {
     out.flash(a, b, 0.25f);     CHECK(out.pixels()[1] > 250);          // peak of the flash is white
     out.flash(a, b, 1.0f);      CHECK(out.pixels()[2] > 250 && out.pixels()[0] < 5);
 }
+
+TEST(render_fill_round_span_path_matches_per_pixel_blend) {
+    Canvas c(120, 80);
+    c.clear({200, 40, 10, 255});
+    c.fill_round({10, 10, 100, 60}, 12, {20, 100, 240, 128});
+    // inside the fully covered core: plain 50% blend, rounded like Canvas::put does
+    const uint8_t* p = &c.pixels()[(static_cast<size_t>(40) * 120 + 60) * 4];
+    CHECK_NEAR(p[0], 200 + (20 - 200) * (128 / 255.0), 1.01);
+    CHECK_NEAR(p[1], 40 + (100 - 40) * (128 / 255.0), 1.01);
+    CHECK_NEAR(p[2], 10 + (240 - 10) * (128 / 255.0), 1.01);
+    // outside the rectangle and in the clipped-away corner: untouched
+    const uint8_t* o = &c.pixels()[(static_cast<size_t>(5) * 120 + 5) * 4];
+    CHECK_EQ(int(o[0]), 200);
+    const uint8_t* k = &c.pixels()[(static_cast<size_t>(10) * 120 + 10) * 4];
+    CHECK_EQ(int(k[0]), 200);                       // the very corner pixel is outside the rounded shape
+    // clip rectangles are honoured by the span path
+    Canvas d(120, 80);
+    d.clear({0, 0, 0, 255});
+    d.set_clip({50, 30, 20, 10});
+    d.fill_round({10, 10, 100, 60}, 12, {255, 255, 255, 255});
+    CHECK_EQ(int(d.pixels()[(static_cast<size_t>(35) * 120 + 60) * 4]), 255);
+    CHECK_EQ(int(d.pixels()[(static_cast<size_t>(35) * 120 + 40) * 4]), 0);
+    CHECK_EQ(int(d.pixels()[(static_cast<size_t>(50) * 120 + 60) * 4]), 0);
+}

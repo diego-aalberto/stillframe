@@ -1,0 +1,38 @@
+name: ci
+
+on:
+  push:
+    branches: [v2, main]
+  pull_request:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    # Linux is the gate. Windows/macOS are informational until someone has run them green: the engine code is portable,
+    # but several tests shell out to POSIX tools (and `python3`), and none of this has been run on those systems yet.
+    continue-on-error: ${{ matrix.os != 'ubuntu-latest' }}
+    defaults:
+      run:
+        working-directory: stillframe
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5          # the minigame/PNG test fixtures use python3 (+ Pillow for PNG fixtures)
+        with:
+          python-version: "3.12"
+      - run: python -m pip install pillow
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+      - name: Build
+        run: cmake --build build --config Release
+      - name: Test
+        run: ctest --test-dir build -C Release --output-on-failure
+      - name: Validate shipped games
+        shell: bash
+        run: |
+          for g in games/*/; do
+            if [ -x build/stillframe ]; then build/stillframe check "$g"; else build/Release/stillframe.exe check "$g"; fi
+          done

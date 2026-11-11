@@ -1,3 +1,6 @@
+> **Stillframe 2 (branch `v2`)** is a C++ rewrite living in [`stillframe/`](stillframe/README.md): one engine, many games, three-slot character memory.
+> The folders below describe the legacy Python/Qt version, which is left untouched.
+
 # Panel — Python CPU comic engine
 
 **Developer handoff:** read [CLAUDE_HANDOFF.md](CLAUDE_HANDOFF.md) for the current architecture, legacy-code distinctions, setup, limitations and root-folder transfer notes. See [HANDOFF_VERIFICATION.md](HANDOFF_VERIFICATION.md) for checks rerun for the handoff.

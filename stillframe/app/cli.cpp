@@ -3,6 +3,7 @@
 #include "../core/platform.hpp"
 #include "../core/vfs.hpp"
 #include "../render/app.hpp"
+#include <chrono>
 #include <cstdio>
 #include <filesystem>
 #include <iostream>
@@ -68,7 +69,7 @@ std::vector<std::string> split_steps(const std::string& s) {
 }
 
 // stillframe screenshot <game> --steps "wait:1;shot:a.png;click;wait:2;shot:b.png" [--size 1280x720] [--fake-llm file.txt]
-// Steps: wait:S  click  click:x,y  move:x,y  key:name  text:string  shot:file.png  save:slot  load:slot  state
+// Steps: wait:S  bench:N  click  click:x,y  move:x,y  key:name  text:string  shot:file.png  save:slot  load:slot  state
 int cmd_screenshot(const std::vector<std::string>& args) {
     if (args.empty()) { std::cerr << "usage: stillframe screenshot <game> --steps \"...\" [--data DIR] [--fake-llm FILE]\n"; return 2; }
     std::string steps, data = (fs::temp_directory_path() / "stillframe-shot-data").string(), fake;
@@ -112,6 +113,13 @@ int cmd_screenshot(const std::vector<std::string>& args) {
             else if (name == "text") { in.type = Input::Text; in.text = arg; p.handle(in); }
             else if (name == "save") p.save_slot(arg);
             else if (name == "load") p.load_slot(arg);
+            else if (name == "bench") {            // bench:N - time N full-frame renders of the current view
+                int n = std::max(1, std::atoi(arg.c_str()));
+                auto t0 = std::chrono::steady_clock::now();
+                for (int i = 0; i < n; ++i) p.render(canvas);
+                double ms = std::chrono::duration<double, std::milli>(std::chrono::steady_clock::now() - t0).count() / n;
+                std::cout << "render: " << ms << " ms/frame at " << canvas.width() << "x" << canvas.height() << "\n";
+            }
             else if (name == "state") std::cout << "mode=" << p.mode_name() << "\n";
             else if (name == "shot") {
                 p.render(canvas);
