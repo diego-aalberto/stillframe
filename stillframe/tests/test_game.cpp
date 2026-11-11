@@ -142,3 +142,13 @@ TEST(saves_recover_from_corruption_using_backup) {
     s.remove("1");
     CHECK_THROWS(s.read("1"));
 }
+
+TEST(game_rejects_malformed_canvas) {
+    auto root = make_game("canvas");
+    put(root + "/game.json", R"({"format":"stillgame","version":1,"id":"c.g","title":"T","game_version":"1","engine":">=2","start":"start","canvas":{"width":640,"height":360}})");
+    bool msg = false;
+    try { Game::load(Vfs::open(root)); } catch (const Error& e) { msg = std::string(e.what()).find("canvas") != std::string::npos; }
+    CHECK(msg);
+    put(root + "/game.json", R"({"format":"stillgame","version":1,"id":"c.g","title":"T","game_version":"1","engine":">=2","start":"start","canvas":[1920,1080]})");
+    CHECK_EQ(Game::load(Vfs::open(root))->canvas_w, 1920);
+}

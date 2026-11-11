@@ -21,6 +21,7 @@ int main(int argc, char** argv) {
     if (cmd == "pack") return sf::cmd_pack(rest);
     if (cmd == "list") return sf::cmd_list(rest);
     if (cmd == "screenshot") return sf::cmd_screenshot(rest);
+    if (cmd == "library-shot") return sf::cmd_library_shot(rest);
     if (cmd == "run") return sf::cmd_run(rest);
     if (cmd == "-h" || cmd == "--help" || cmd == "help") { usage(); return 0; }
     return sf::cmd_run(args);      // `stillframe path/to/game`

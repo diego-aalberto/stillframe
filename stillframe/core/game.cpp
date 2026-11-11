@@ -42,6 +42,8 @@ std::shared_ptr<Game> Game::load(std::unique_ptr<Vfs> v) {
         int major = std::atoi(digits.c_str());
         if (major > kEngineMajor) fail("game.json", "this game needs Stillframe " + req + " but this is engine " + std::to_string(kEngineMajor) + ".x - please update the engine");
     }
+    if (m.has("canvas") && !(m["canvas"].is_array() && m["canvas"].size() == 2))
+        fail("game.json", "\"canvas\" must be two sizes like [1280, 720]");
     if (m["canvas"].is_array()) {
         g->canvas_w = static_cast<int>(m["canvas"].at(0).as_int(1280));
         g->canvas_h = static_cast<int>(m["canvas"].at(1).as_int(720));

@@ -2,7 +2,7 @@
 #include "../core/game.hpp"
 #include "../core/platform.hpp"
 #include "../core/vfs.hpp"
-#include "../render/player.hpp"
+#include "../render/app.hpp"
 #include <cstdio>
 #include <filesystem>
 #include <iostream>
@@ -126,6 +126,27 @@ int cmd_screenshot(const std::vector<std::string>& args) {
         std::cerr << "error: " << e.what() << "\n";
         return 1;
     }
+}
+
+// stillframe library-shot <games dir> <out.png> [hover x,y]
+int cmd_library_shot(const std::vector<std::string>& args) {
+    if (args.size() < 2) { std::cerr << "usage: stillframe library-shot <games dir> <out.png> [x,y]\n"; return 2; }
+    try {
+        AppOptions o;
+        o.games_dir = args[0];
+        App app(o);
+        Canvas c(o.width, o.height);
+        if (args.size() > 2) {
+            Input in; in.type = Input::MouseMove;
+            in.x = static_cast<float>(std::atof(args[2].c_str()));
+            in.y = static_cast<float>(std::atof(args[2].c_str() + args[2].find(',') + 1));
+            app.handle(in);
+        }
+        app.render(c);
+        png_save(args[1], c.to_image());
+        std::cout << "wrote " << args[1] << " (" << app.launcher().games().size() << " games)\n";
+        return 0;
+    } catch (const Error& e) { std::cerr << "error: " << e.what() << "\n"; return 1; }
 }
 
 #ifndef SF_WITH_SDL

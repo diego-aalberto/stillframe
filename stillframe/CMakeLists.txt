@@ -37,7 +37,7 @@ target_compile_definitions(sf_tests PRIVATE SF_SOURCE_DIR="${CMAKE_CURRENT_SOURC
 enable_testing()
 add_test(NAME sf_tests COMMAND sf_tests WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
-# The command-line program. Windowed play needs SDL3 (+ SDL3_mixer for sound); everything else works without it.
+# The command-line program. Windowed play needs SDL3 (sound is not implemented yet); everything else works without it.
 file(GLOB SF_APP_SOURCES CONFIGURE_DEPENDS app/*.cpp)
 list(FILTER SF_APP_SOURCES EXCLUDE REGEX ".*/sdl_.*\\.cpp$")
 add_executable(stillframe ${SF_APP_SOURCES})
@@ -47,11 +47,6 @@ if(SDL3_FOUND AND EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/app/sdl_app.cpp)
   target_sources(stillframe PRIVATE app/sdl_app.cpp)
   target_compile_definitions(stillframe PRIVATE SF_WITH_SDL=1)
   target_link_libraries(stillframe PRIVATE SDL3::SDL3)
-  find_package(SDL3_mixer CONFIG QUIET)
-  if(SDL3_mixer_FOUND)
-    target_compile_definitions(stillframe PRIVATE SF_WITH_MIXER=1)
-    target_link_libraries(stillframe PRIVATE SDL3_mixer::SDL3_mixer)
-  endif()
   message(STATUS "Stillframe: window support enabled (SDL3 found)")
 else()
   message(STATUS "Stillframe: SDL3 not found - building without a window (CLI tools only)")

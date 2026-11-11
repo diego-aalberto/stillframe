@@ -29,4 +29,13 @@ Theme Theme::from_game(const Game& g, AssetCache& assets) {
     return t;
 }
 
+Theme Theme::engine_default() {
+    Theme t;
+    t.fonts.add(AssetCache::font_from_engine("Poppins-Regular.ttf"));
+    t.fonts.add(AssetCache::font_from_engine("DejaVuSans.ttf"));
+    t.fonts_bold.add(AssetCache::font_from_engine("Poppins-Medium.ttf"));
+    t.fonts_bold.add(AssetCache::font_from_engine("DejaVuSans.ttf"));
+    return t;
+}
+
 } // namespace sf

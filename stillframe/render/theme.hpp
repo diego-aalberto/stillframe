@@ -28,6 +28,7 @@ struct Theme {
     FontSet fonts_bold;  // names and buttons
 
     static Theme from_game(const Game& g, AssetCache& assets);
+    static Theme engine_default();     // for screens that exist outside any game (the library)
 };
 
 } // namespace sf
