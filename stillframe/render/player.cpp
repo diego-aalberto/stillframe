@@ -177,6 +177,12 @@ std::vector<std::string> Player::take_messages() {
     return out;
 }
 
+std::vector<std::string> Player::menu_labels() const {
+    std::vector<std::string> out;
+    if (mode_ == Mode::Menu) for (auto& o : menu_["options"].items()) out.push_back(o["text"].as_str());
+    return out;
+}
+
 std::string Player::mode_name() const {
     switch (mode_) {
         case Mode::Running: return "running"; case Mode::Say: return "say"; case Mode::Menu: return "menu"; case Mode::Talk: return "talk";
@@ -353,6 +359,19 @@ void Player::start_talk(const Json& ev) {
     co.player_name = name_of("player", Json());
     co.scene = vm_.where();
     co.seed = opt_.seed;
+    // Character files may gate poses on game state ("pose_requires": {"cuddle": "rel.hana.status == 'exploring'"}).
+    for (auto& cid : ev["cast"].items()) {
+        const CharacterDef* cd = game_->character(cid.as_str());
+        if (!cd) continue;
+        for (auto& kv : cd->raw["pose_requires"].members()) {
+            try {
+                Json vars = vm_.vars();
+                uint64_t rng = 1;
+                EvalContext ctx; ctx.vars = &vars; ctx.rng = &rng;
+                if (!truthy(eval(parse_expr(kv.second.as_str()), ctx))) co.blocked_poses[cid.as_str()].insert(kv.first);
+            } catch (const Error&) { co.blocked_poses[cid.as_str()].insert(kv.first); }   // when in doubt, stay modest
+        }
+    }
     try { conv_ = std::make_unique<Conversation>(*game_, hub_, *sched_, ev, co); }
     catch (const Error& e) { error_kind_ = "talk"; mode_ = Mode::Running; show_error(tr("script_error"), e.what(), false); return; }
     talk_queue_.clear(); input_.clear();

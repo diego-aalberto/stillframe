@@ -64,6 +64,11 @@ bool Conversation::busy() const {
     return false;
 }
 
+bool Conversation::pose_blocked(const std::string& who, const std::string& pose) const {
+    auto it = opt_.blocked_poses.find(who);
+    return it != opt_.blocked_poses.end() && it->second.count(pose) > 0;
+}
+
 bool Conversation::looks_like_repair(const std::string& text) const { return offers_repair(text, opt_.repair_words); }
 
 // ----------------------------------------------------------------------------- prompt + schema
@@ -79,7 +84,7 @@ Json Conversation::schema_for(const std::string& speaker, bool interjection) con
     props.set("reply", str());
     if (auto* c = game_.character(speaker)) {
         std::vector<std::string> poses;
-        for (auto& kv : c->poses) poses.push_back(kv.first);
+        for (auto& kv : c->poses) if (!pose_blocked(speaker, kv.first)) poses.push_back(kv.first);
         if (!poses.empty()) props.set("pose", enum_of(poses));
     }
     Json ops = Json::object(), item = Json::object(), ip = Json::object(), req = Json::array();
@@ -284,7 +289,7 @@ void Conversation::emit_reply(const std::string& speaker, const Json& j, const s
     if (text.empty()) text = "...";
     const CharacterDef* ch = game_.character(speaker);
     std::string pose = j["pose"].as_str();
-    if (!ch || !ch->poses.count(pose)) pose = "";
+    if (!ch || !ch->poses.count(pose) || pose_blocked(speaker, pose)) pose = "";
 
     OpContext ctx;
     ctx.turn = hub_.turn;

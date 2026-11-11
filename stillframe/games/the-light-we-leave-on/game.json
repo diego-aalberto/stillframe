@@ -1,0 +1,97 @@
+{
+  "format": "stillgame",
+  "version": 1,
+  "id": "the-light-we-leave-on",
+  "title": "The Light We Leave On",
+  "author": "Diego Alberto",
+  "game_version": "2.0.0",
+  "engine": ">=2",
+  "start": "start",
+  "cover": "backgrounds/cafe.png",
+  "canvas": [
+    1260,
+    840
+  ],
+  "variables": {
+    "player": "You",
+    "node": "",
+    "stage": 0,
+    "shared_index": 0,
+    "visits": 0,
+    "rel": {
+      "hana": {
+        "trust": 1,
+        "ease": 1,
+        "spark": 0,
+        "status": "acquaintance",
+        "repair": false,
+        "progress": 0,
+        "visits": 0
+      },
+      "mira": {
+        "trust": 1,
+        "ease": 1,
+        "spark": 0,
+        "status": "acquaintance",
+        "repair": false,
+        "progress": 0,
+        "visits": 0
+      },
+      "leila": {
+        "trust": 1,
+        "ease": 1,
+        "spark": 0,
+        "status": "acquaintance",
+        "repair": false,
+        "progress": 0,
+        "visits": 0
+      },
+      "tessa": {
+        "trust": 1,
+        "ease": 1,
+        "spark": 0,
+        "status": "acquaintance",
+        "repair": false,
+        "progress": 0,
+        "visits": 0
+      }
+    },
+    "flags": {},
+    "facts": {}
+  },
+  "positions": {
+    "far_left": 0.14,
+    "left": 0.33,
+    "right": 0.67,
+    "far_right": 0.86
+  },
+  "llm": {
+    "system": "The Light We Leave On is a wholesome adult romantic ensemble set in Bellweather over six summer weeks. June, who owns the café called The Spare Room, is retiring; it may become a smaller café or a supper club. There is no tragedy and no magical rescue. The player is an adult (21+). Care is not romantic debt, and friendship is a good outcome. A refusal, a correction or disagreement is not cruelty. Never invent the player's speech, actions, feelings, touch or consent; offer a hand or a kiss instead of narrating an accepted one, unless the player's own words consent to it. No immediate love, forced jealousy, explicit sex, coercive intimacy or dependence on the game. Welcomed affection (hand-holding, kisses, hugs, cuddling) is warm and invited, never assumed. A consensual shared relationship between the player and all four women is possible only after each romance has developed and each woman independently opts in; consent for it is conditional until all four agree and can be withdrawn. Exclusive and shared agreements are different things. The women need not date each other. Keep replies short and spoken: one to three sentences, under 70 words, at most one brief action. Use seated poses where people are sitting, firm poses for boundaries, and affectionate or cuddle poses only when the relationship allows it; a pose never asserts touch.",
+    "template": "chatml",
+    "max_tokens": 320,
+    "temperature": 0.8,
+    "slots": 4,
+    "interject_limit": 2,
+    "interject_cooldown": 2,
+    "repair_words": [
+      "sorry",
+      "apologize",
+      "apologise",
+      "i was wrong",
+      "my fault",
+      "i shouldn't have",
+      "i should not have",
+      "lo siento",
+      "perdón",
+      "perdon",
+      "me equivoqué",
+      "fue mi culpa"
+    ]
+  },
+  "theme": {
+    "colors": {
+      "accent": "#f0c987"
+    },
+    "chars_per_second": 52
+  }
+}

@@ -3,6 +3,7 @@
 #include "../core/platform.hpp"
 #include <filesystem>
 #include <fstream>
+#include <functional>
 
 using namespace sf;
 namespace fs = std::filesystem;
@@ -64,6 +65,8 @@ label after:
     end "done"
 )";
 
+std::function<void(const std::string&)> g_tweak;
+
 std::string make_game(const char* name) {
     auto root = (fs::temp_directory_path() / (std::string("sf_player_") + name)).string();
     fs::remove_all(root);
@@ -81,6 +84,7 @@ std::string make_game(const char* name) {
     put(root + "/minigames/dice/minigame.json", R"({"id":"dice","title":"Dice","outcomes":["win","lose","draw"],"launch":{"type":"process","command":["python3","-I","-u","{dir}/main.py"]}})");
     put(root + "/minigames/dice/main.py", slurp(std::string(SF_SOURCE_DIR) + "/tools/sample_minigame.py"));
     put(root + "/scripts/main.sf", kScript);
+    if (g_tweak) g_tweak(root);
     return root;
 }
 
@@ -226,4 +230,26 @@ TEST(player_frames_are_not_blank) {
     const auto& px = r.canvas.pixels();
     CHECK(std::abs(int(px[(5 * 640 + 5) * 4]) - 90) < 6);
     CHECK(px[(340 * 640 + 320) * 4] < 60);
+}
+
+TEST(player_pose_requires_blocks_poses_until_condition_holds) {
+    g_tweak = [](const std::string& root) {
+        std::string cj = slurp(root + "/characters/hana.json");
+        cj.insert(cj.rfind('}'), R"(,"pose_requires":{"shy":"trust >= 2"})");
+        put(root + "/characters/hana.json", cj);
+    };
+    Rig r("pose_gate");
+    g_tweak = nullptr;
+    CHECK(r.game->validate().empty());
+    CHECK(r.until("say"));
+    r.next(); CHECK(r.until("say"));
+    r.next(); CHECK(r.until("menu"));
+    r.key("2");
+    CHECK(r.until("talk"));
+    CHECK(r.p->conversation() != nullptr);
+    if (r.p->conversation()) {
+        std::string schema = r.p->conversation()->schema_for("hana", false).dump();
+        CHECK(schema.find("shy") == std::string::npos);        // trust is 1 here, so "shy" must not be offered
+        CHECK(schema.find("neutral") != std::string::npos);
+    }
 }

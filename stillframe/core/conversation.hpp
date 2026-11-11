@@ -2,6 +2,8 @@
 // changes only through the operations she returns, and she may pull another character into the
 // conversation. Nothing here blocks: the game calls player_say() and then poll() every frame.
 #pragma once
+#include <set>
+#include <map>
 #include "game.hpp"
 #include "llm.hpp"
 #include "memory.hpp"
@@ -22,6 +24,7 @@ struct ConvOptions {
     int interject_cooldown = 1;          // player messages that must pass between two interjections
     std::vector<std::string> repair_words;   // empty = built-in English/Spanish list
     std::string language;                // e.g. "Spanish"; empty = same as the player
+    std::map<std::string, std::set<std::string>> blocked_poses;   // speaker -> poses she may not use right now (character "pose_requires")
     static ConvOptions from_game(const Game& g, const Json& talk);
 };
 
@@ -37,6 +40,8 @@ struct ConvEvent { std::string type; Json data; };
 class Conversation {
 public:
     Conversation(const Game& game, MemoryHub& hub, LlmScheduler& sched, const Json& talk_event, ConvOptions opt);
+    Json schema_for(const std::string& speaker, bool interjection) const;   // the JSON schema the model must follow
+    bool pose_blocked(const std::string& who, const std::string& pose) const;
 
     bool player_say(const std::string& text, const std::string& to = "");   // false while she is still answering
     bool retry();                          // after an "error": ask again, without recording the line twice
@@ -66,7 +71,6 @@ private:
     void finish(const std::string& outcome, const std::string& reason, std::vector<ConvEvent>& out);
     bool looks_like_repair(const std::string& text) const;
     std::string display_name(const std::string& id) const;
-    Json schema_for(const std::string& speaker, bool interjection) const;
     LlmRequest request_for(const std::string& speaker, const Job& job, bool interjection) const;
 
     const Game& game_;

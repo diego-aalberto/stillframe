@@ -55,6 +55,7 @@ public:
     bool quit_requested() const { return quit_; }
     int canvas_w() const { return game_->canvas_w; }
     int canvas_h() const { return game_->canvas_h; }
+    std::vector<std::string> menu_labels() const;   // visible options of the menu on screen (tests, tools)
     std::string mode_name() const;               // "say" "menu" "talk" "minigame" "pause" "ended" "error" "menu_overlay" ...
     const Json& vars() const { return vm_.vars(); }
     bool save_slot(const std::string& slot);

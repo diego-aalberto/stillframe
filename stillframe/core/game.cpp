@@ -182,6 +182,10 @@ std::vector<Issue> Game::validate() const {
             if (!vfs->exists(p.second)) err(where, "pose '" + p.first + "' image missing: " + p.second);
             else if (!exact(p.second)) warn(where, "image path differs in letter case from the file on disk: " + p.second);
         }
+        for (auto& kv : c.raw["pose_requires"].members()) {
+            if (!c.poses.count(kv.first)) err(where, "pose_requires names unknown pose '" + kv.first + "'");
+            try { parse_expr(kv.second.as_str()); } catch (const Error& e) { err(where, "pose_requires." + kv.first + ": " + e.what()); }
+        }
         if (!c.poses.empty() && !c.poses.count(c.default_pose)) err(where, "default_pose '" + c.default_pose + "' is not one of the poses");
     }
     // talk blocks
