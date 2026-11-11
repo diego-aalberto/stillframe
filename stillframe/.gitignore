@@ -1,0 +1,5 @@
+build/
+build-*/
+*.stillgame
+.cache/
+compile_commands.json
