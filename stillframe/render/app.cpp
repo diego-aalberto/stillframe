@@ -64,6 +64,6 @@ void App::render(Canvas& out) {
     if (player_) player_->render(out); else launcher_.render(out);
 }
 
-bool App::needs_frame() const { return player_ ? player_->needs_frame() : true; }
+bool App::needs_frame() const { return player_ && player_->needs_frame(); }
 
 } // namespace sf

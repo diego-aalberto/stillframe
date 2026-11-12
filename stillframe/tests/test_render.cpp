@@ -2,6 +2,7 @@
 #include "../render/canvas.hpp"
 #include "../core/process.hpp"
 #include "../core/platform.hpp"
+#include <cstdlib>
 #include <filesystem>
 #include <fstream>
 
@@ -25,7 +26,8 @@ static std::string fixtures() {
     fs::remove_all(dir);
     fs::create_directories(dir);
     SpawnOptions o;
-    o.argv = {"python3", "-I", std::string(SF_SOURCE_DIR) + "/tools/make_png_fixtures.py", dir};
+    const char* python = std::getenv("SF_TEST_PYTHON");
+    o.argv = {python ? python : "python3", "-I", std::string(SF_SOURCE_DIR) + "/tools/make_png_fixtures.py", dir};
     auto p = Process::spawn(o);
     if (p->wait(20000) != 0) throw Error("could not create PNG fixtures (needs python3 with Pillow)");
     return dir;

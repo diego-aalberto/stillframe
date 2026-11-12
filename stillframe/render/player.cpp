@@ -554,11 +554,12 @@ bool Player::load_slot(const std::string& slot) {
 
 bool Player::needs_frame() const {
     return dirty_ || stage_.busy() || !toasts_.empty() || mode_ == Mode::Talk || mode_ == Mode::Minigame || mode_ == Mode::Pause ||
-           (has_line_ && !line_.full()) || (mode_ == Mode::Say || mode_ == Mode::Menu);   // the advance arrow pulses
+           (has_line_ && !line_.full());
 }
 
 void Player::update(double dt) {
     clock_ += dt;
+    if (stage_.busy() || !toasts_.empty()) dirty_ = true;
     stage_.update(dt);
     if (has_line_ && !line_.full()) {
         double cps = theme_.chars_per_second * (text_speed_ > 0 ? text_speed_ : 1e6);
@@ -805,10 +806,8 @@ void Player::draw_line_box(Canvas& c, const Layout& L) {
         base += lh;
     }
     if (shown.full() && (mode_ == Mode::Say || (talk && (!talk_queue_.empty() || talk_done_)))) {
-        // pulsing "continue" arrow
-        float a = static_cast<float>(0.45 + 0.55 * (0.5 + 0.5 * std::sin(clock_ * 4.0)));
         float ax = L.box.right() - 0.03f * w_, ay = talk ? L.text.bottom() - 2 : L.box.bottom() - 0.04f * h_;
-        c.text(theme_.fonts, "\xE2\x96\xBC", px * 0.7f, ax, ay + std::sin(static_cast<float>(clock_) * 4) * 2, who_color.with_alpha(a));
+        c.text(theme_.fonts, "\xE2\x96\xBC", px * 0.7f, ax, ay, who_color);
     }
 }
 

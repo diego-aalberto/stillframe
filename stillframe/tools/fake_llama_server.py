@@ -85,7 +85,7 @@ class H(BaseHTTPRequestHandler):
                 self.wfile.write(b"0\r\n\r\n")
                 with LOCK:
                     entry["completed"] = True
-            except (BrokenPipeError, ConnectionResetError):
+            except (BrokenPipeError, ConnectionResetError, ConnectionAbortedError):
                 with LOCK:
                     entry["aborted"] = True
             return

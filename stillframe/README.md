@@ -51,9 +51,8 @@ four-way ending).
 
 **Not verified / not done:**
 
-* **The SDL window (`app/sdl_app.cpp`) has never been compiled or run** - there was no SDL and no display where it was written.
-  Expect to fix a compile error or two on first build. Everything it calls into is tested; it only does windowing and input mapping.
-* **Windows and macOS builds** have not been tried. The CI job for them is informational.
+* The Windows player and SDL3 window code compile with MinGW in C++20 mode. The shipped game has been checked and rendered headlessly on Windows. Interactive window behavior still needs a manual playthrough.
+* macOS has not been verified. Windows and macOS CI jobs are informational.
 * **No audio.** The player emits music/sound requests through an `AudioSink`; no implementation exists yet (SDL3_mixer is the plan).
   The ported game has no music wired in: the legacy soundtrack (one WAV per scene, listed in `Game/music/tracks.json`) is not in the repo.
 * **A real llama-server has not been used** (only a fake that speaks the same API). The request shape follows llama.cpp's

@@ -1,3 +1,4 @@
+#include <numbers>
 #include "stage.hpp"
 #include <algorithm>
 #include <cmath>
@@ -13,13 +14,13 @@ bool is_known_transition(const std::string& n) {
 namespace {
 struct Offset { double dx = 0, dy = 0, scale = 1.0; };      // dx, dy in fractions of canvas width / height
 
-double bump(double t) { return std::sin(std::clamp(t, 0.0, 1.0) * M_PI); }
-double decay_wave(double t, double cycles, double amp) { return std::sin(t * cycles * 2 * M_PI) * amp * (1 - t); }
+double bump(double t) { return std::sin(std::clamp(t, 0.0, 1.0) * std::numbers::pi); }
+double decay_wave(double t, double cycles, double amp) { return std::sin(t * cycles * 2 * std::numbers::pi) * amp * (1 - t); }
 
 // Motion curves. t runs 0..1 over the motion's length. All amplitudes are small on purpose.
 Offset motion_offset(const std::string& m, double t) {
     Offset o;
-    if (m == "nod")            { o.dy = 0.014 * std::fabs(std::sin(t * 2 * M_PI)); }
+    if (m == "nod")            { o.dy = 0.014 * std::fabs(std::sin(t * 2 * std::numbers::pi)); }
     else if (m == "shake_head" || m == "shake") { o.dx = decay_wave(t, 3, 0.008); }
     else if (m == "tilt")      { o.dx = 0.006 * bump(t); o.dy = 0.004 * bump(t); }
     else if (m == "emphasize") { o.scale = 1.0 + 0.035 * bump(t); }
@@ -27,9 +28,9 @@ Offset motion_offset(const std::string& m, double t) {
     else if (m == "bashful")   { o.dy = 0.02 * bump(t); o.dx = -0.008 * bump(t); }
     else if (m == "reassure")  { o.scale = 1.0 + 0.025 * bump(t); o.dy = 0.006 * bump(t); }
     else if (m == "sigh")      { o.scale = 1.0 - 0.012 * bump(t); o.dy = 0.010 * bump(t); }
-    else if (m == "glance")    { o.dx = 0.010 * std::sin(t * 2 * M_PI); }
+    else if (m == "glance")    { o.dx = 0.010 * std::sin(t * 2 * std::numbers::pi); }
     else if (m == "hop")       { o.dy = -0.05 * bump(t); }
-    else if (m == "bob")       { o.dy = -0.012 * std::fabs(std::sin(t * 2 * M_PI)); }
+    else if (m == "bob")       { o.dy = -0.012 * std::fabs(std::sin(t * 2 * std::numbers::pi)); }
     else if (m == "breathe")   { o.scale = 1.0 + 0.012 * bump(t); }
     return o;
 }

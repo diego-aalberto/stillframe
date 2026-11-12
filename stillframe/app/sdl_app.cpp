@@ -1,8 +1,5 @@
 // Window shell: SDL3 only does what the OS must do (window, input, putting pixels on screen).
 // Everything else - drawing, library, games - lives in sf_render and is tested without a display.
-//
-// NOTE: this file is only compiled when SDL3 is found. It could not be built or run in the environment
-// it was written in (no SDL, no display), so treat the first build on a real machine as its test.
 #include "cli.hpp"
 #include "../render/app.hpp"
 #include "../core/platform.hpp"
@@ -17,6 +14,8 @@ bool window_support_available() { return true; }
 namespace {
 
 std::string key_name(SDL_Keycode k) {
+    if (k >= SDLK_1 && k <= SDLK_9) return std::to_string(k - SDLK_1 + 1);
+    if (k >= SDLK_KP_1 && k <= SDLK_KP_9) return std::to_string(k - SDLK_KP_1 + 1);
     switch (k) {
         case SDLK_ESCAPE: return "escape";
         case SDLK_RETURN: case SDLK_KP_ENTER: return "enter";
