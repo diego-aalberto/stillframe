@@ -1,1 +1,0 @@
-"""Local inference service."""

@@ -15,9 +15,6 @@ jobs:
     # Linux is the gate. Windows/macOS are informational until someone has run them green: the engine code is portable,
     # but several tests shell out to POSIX tools (and `python3`), and none of this has been run on those systems yet.
     continue-on-error: ${{ matrix.os != 'ubuntu-latest' }}
-    defaults:
-      run:
-        working-directory: stillframe
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5          # the minigame/PNG test fixtures use python3 (+ Pillow for PNG fixtures)

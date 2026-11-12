@@ -1,19 +1,5 @@
-# Local language-model weights (keep download instructions and model metadata).
-*.gguf
-*.safetensors
-*.ggml
-*.pth
-*.pt
-*.ckpt
-/Inference/models/*
-!/Inference/models/README.md
-
-# Installed runtimes, legacy portable export and generated local output.
-**/.venv/
-**/__pycache__/
-**/.pytest_cache/
-*.pyc
-/app/
-/app.zip
-**/pytest-cache-files-*/
-**/*-tmp/
+build/
+build-*/
+*.stillgame
+.cache/
+compile_commands.json

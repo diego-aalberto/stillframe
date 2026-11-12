@@ -1,1 +1,0 @@
-{"format":"panel.scene","version":1,"text":"Engine fixture. The existing flattened sprite is one layer. Import separate body-part images in the editor to animate them independently.","actors":[],"buttons":[{"label":"Open fixture","action":{"type":"scene","scene":"stage"}}]}

@@ -1,1 +1,0 @@
-{"format":"panel.rig","version":1,"joints":[{"id":"root","parent":null,"x":512,"y":1450}],"layers":[{"id":"existing_sprite","image":"../../ComicEngine/samples/anime/standing.png","joint":"root","pivot":[512,1450],"x":0,"y":0,"z":0}]}
