@@ -2,7 +2,7 @@
 
 A game is a folder, or the same folder packed into one `.stillgame` file (`stillframe pack <folder>`; a `.stillgame` is a ZIP
 the engine reads directly). Put games in the engine's `games/` folder (or point `STILLFRAME_GAMES` / `--games` elsewhere); the
-library screen lists them. `stillframe check <game>` validates everything and is the first thing to run when something is wrong.
+library screen lists them. `stillframe check <game>` checks scripts and asset references and is the first thing to run when something is wrong.
 
 ```
 my-game/
@@ -78,4 +78,4 @@ Layout sizes are fractions of the canvas (`radius` is in pixels), so a theme sur
 * Backgrounds: any size; they are scaled to *cover* the canvas.
 * Fonts: TrueType (`glyf` outlines) with a fallback chain; no kerning/GPOS yet.
 * Audio: referenced by script (`play music "audio/theme.ogg"`). The engine decides *what* plays; actual playback needs an
-  audio backend, which does not exist yet (see README, "Not done").
+  audio backend, which does not exist yet (see [current format support](../FORMAT_STATUS.md)).
