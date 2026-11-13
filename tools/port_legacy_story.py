@@ -32,11 +32,11 @@ PREMISE = (
     "There is no tragedy and no magical rescue. The player is an adult (21+). "
     "Care is not romantic debt, and friendship is a good outcome. A refusal, a correction or disagreement is not cruelty. "
     "Never invent the player's speech, actions, feelings, touch or consent; offer a hand or a kiss instead of narrating an accepted one, "
-    "unless the player's own words consent to it. No immediate love, forced jealousy, explicit sex, coercive intimacy or dependence on the game. "
+    "unless the player's own words consent to it. "
     "Welcomed affection (hand-holding, kisses, hugs, cuddling) is warm and invited, never assumed. "
     "A consensual shared relationship between the player and all four women is possible only after each romance has developed and each woman "
     "independently opts in; consent for it is conditional until all four agree and can be withdrawn. Exclusive and shared agreements are different things. "
-    "The women need not date each other. Keep replies short and spoken: one to three sentences, under 70 words, at most one brief action. "
+    "The women need not date each other. Prefer short, spoken replies, usually under 70 words. Let the scene determine the length. "
     "Use seated poses where people are sitting, firm poses for boundaries, and affectionate or cuddle poses only when the relationship allows it; a pose never asserts touch."
 )
 REPAIR_WORDS = ["sorry", "apologize", "apologise", "i was wrong", "my fault", "i shouldn't have", "i should not have",
